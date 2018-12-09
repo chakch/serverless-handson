@@ -1,7 +1,7 @@
 # Serverless-handson
-If you are here, you believe that the framework strength came from it community.
+If you are here, you believe that the framework strength came from its community.
 
-In this hands-on we are going to read a rssFeed, convert it to MP3 and saved the feed in database.
+In this hands-on, we are going to read a rssFeed, convert it to MP3 and saved the feed in database.
 
 ![alt text](images/architecture_lambda.png "Transcoder Architecture")
 
@@ -20,9 +20,9 @@ So let's get started :blush:
 ## First Step : Prepare the field
 
 For this hands-on you need to install node version 8.9
-Use node version manager to handle multiple node version
+Use node version manager to handle multiple node versions
 
-- The installation instruction are available here: https://github.com/creationix/nvm
+- The installation instructions are available here: https://github.com/creationix/nvm
 
 - Check you install: `nvm --version`
 
@@ -44,7 +44,7 @@ https://pip.pypa.io/en/stable/installing/
 
 `aws --version`
 
-- To install Serverless you can copy and paste this command in your terminal : `npm install -g serverless`
+- To install Serverless, copy and paste this command in your terminal : `npm install -g serverless`
 
 - Check you Serverless version: `serverless --version`
 
@@ -61,15 +61,15 @@ Checkout the projet and start coding :cloud:
 
 ![alt text](images/first_block.png "Transcoder Architecture")
 
-The RssReader function read every day the aws rssFeed and save it on dynamoDB
+The RssReader function reads every day the aws rssFeed and saves it on dynamoDB
 
-The function code is availaible on the package rss-reader
+The function code is available on the package rss-reader
 
 - Create the RssReaderRole:
     
     https://serverless.com/framework/docs/providers/aws/guide/iam/
     
-    you should create a role and a policy role. You have to create them in the ressources section on serverless.yml  
+    Create a role and a policy role. You have to create them in the ressources section on serverless.yml  
       
 - Launch `serverless deploy` to deploy the created role
 - Check the IAM service on the AWS console: 
@@ -87,7 +87,7 @@ The function code is availaible on the package rss-reader
     To define a DynamoDB Table, you should add a table description in the serverless.yml ressources section.
     
     https://docs.aws.amazon.com/fr_fr/AWSCloudFormation/latest/UserGuide/aws-resource-dynamodb-table.html
-- Add the the table name to the function enviromenent variable  
+- Add the the table name to the function environment variable  
 - Launch `serverless deploy` and check the created table on the AWS console :
     
     https://eu-central-1.console.aws.amazon.com/dynamodb/home?region=eu-central-1#
