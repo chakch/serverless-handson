@@ -32,6 +32,18 @@ Use node version manager to handle multiple node version
 
 - Use the command `nvm use 8.9.4` to switch node version
 
+- Install pip: 
+
+https://pip.pypa.io/en/stable/installing/
+
+- Install AWS Command line interface
+
+`pip install awscli --upgrade --user` 
+
+- Verify that the AWS CLI installed correctly
+
+`aws --version`
+
 - To install Serverless you can copy and paste this command in your terminal : `npm install -g serverless`
 
 - Check you Serverless version: `serverless --version`
