@@ -1,7 +1,7 @@
 # Serverless-handson
 If you are here, you believe that the framework strength came from its community.
 
-In this hands-on, we are going to read a rssFeed, convert it to MP3 and saved the feed in database.
+In this hands-on, we are going to read a rssFeed, convert it to MP3 and saved the feeds in database.
 
 ![alt text](images/architecture_lambda.png "Transcoder Architecture")
 
@@ -75,6 +75,7 @@ The function code is available on the package rss-reader
 - Check the IAM service on the AWS console: 
     
     https://console.aws.amazon.com/iam/home?region=eu-central-1#/home 
+    
 - Create your function with the created role and add a scheduled task to launch this lambda every day
     https://serverless.com/framework/docs/providers/aws/guide/functions/
     https://serverless.com/framework/docs/providers/aws/events/schedule/#schedule
@@ -82,31 +83,32 @@ The function code is available on the package rss-reader
 - Launch `serverless deploy` and check the Lambda service on the AWS console: 
     
     https://eu-central-1.console.aws.amazon.com/lambda/home?region=eu-central-1#/functions
+    
 - Create DynamoDB table:
     
     To define a DynamoDB Table, you should add a table description in the serverless.yml ressources section.
     
     https://docs.aws.amazon.com/fr_fr/AWSCloudFormation/latest/UserGuide/aws-resource-dynamodb-table.html
-- Add the the table name to the function environment variable  
+    
+- Add the table name to the function environment variable  
 - Launch `serverless deploy` and check the created table on the AWS console :
     
     https://eu-central-1.console.aws.amazon.com/dynamodb/home?region=eu-central-1#
 
-Test your function: serverless invoke local --function rss-reader
-
-Celect DynamoDB service and check if you have the last AWS's blog articles
+Select DynamoDB service and check if you have the last AWS's blog articles
     
 ### Create the audio transcoder function
 
 ![alt text](images/second_block.png "Transcoder Architecture")
 
 - Create the S3 bucket:
+
     https://docs.aws.amazon.com/fr_fr/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html
     
 - Create the AudioTranscoderRole
+
     Your function should be able to to acces to cloudwatch, dynamoDB,polly and s3
-   
-    
+       
 - Create and connect the audioTrancoder function with the created role and the dynamoDB steam
 
 - Add the the bucket name to the AudiTranscoder function enviromenent variable  
@@ -121,5 +123,7 @@ Sometimes we need to sychronize the articles manually. To do this we are going t
 
 - Create an http endpoint to trigger the RssReader function
     https://serverless.com/framework/docs/providers/aws/events/apigateway/#simple-http-endpoint
+
+- launch `serverless deploy` to update your stack
 
 - Test the new feature by a simple curl
