@@ -1,91 +1,21 @@
 
-service: aws-nodejs # NOTE: update this with your service name
+service: serverless-handson
 
 provider:
   name: aws
   runtime: nodejs8.10
   region: eu-central-1
-  iamRoleStatements:
-    - Effect: Allow
-      Action:
-        - dynamodb:Query
-        - dynamodb:Scan
-        - dynamodb:BatchGetItem
-        - dynamodb:BatchWriteItem
-        - dynamodb:GetItem
-        - dynamodb:PutItem
-        - dynamodb:UpdateItem
-        - dynamodb:DeleteItem
-        - dynamodb:DescribeTable
-      Resource: "*"
-    - Sid: Backup
-      Effect: Allow
-      Action:
-        - polly:*
-      Resource: "*"
-    - Sid: saver
-      Effect: Allow
-      Action:
-        - s3:*
-      Resource: "*"
-
+  
 functions:
   rss-reader:
-    handler: app/rss-reader/reader.handler
-    events:
-      - schedule: rate(24 hours)
-    package:
-      include:
-        - app/rss-reader/**
-    environment:
-      ARTICLE_TABLE: article
+# add your rssReader connection here
   audio-transcoder:
-    handler: app/audio-transcoder/transcoder.handler
-    events:
-    - stream:
-        type: dynamodb
-        arn:
-          Fn::GetAtt:
-            - Article
-            - StreamArn
-        batchSize: 1
-    package:
-      include:
-        - app/audio-transcoder/**
-    environment:
-      BUCKET_NAME: serverless-xke-demo
-
+# add your audioTranscoder connection here
 
 resources:
   Resources:
-    ServerlessXkeDemoBucket:
-      Type: AWS::S3::Bucket
-      Properties:
-        BucketName: serverless-xke-demo
+# add the definition of your S3 bucket here
     Article:
-      Type: AWS::DynamoDB::Table
-      Properties:
-        TableName: article
-        AttributeDefinitions:
-          - AttributeName: id
-            AttributeType: S
-        KeySchema:
-          - AttributeName: id
-            KeyType: HASH
-        ProvisionedThroughput:
-          ReadCapacityUnits: 1
-          WriteCapacityUnits: 1
-        StreamSpecification:
-          StreamViewType: NEW_IMAGE
+# add the definition of your table here
+
   Outputs:
-     NewOutput:
-       Description: "Description for the output"
-       Value: "Some output value"
-
-
-
-
-#AWS_PROFILE=mchaaben serverless invoke local --function audio-transcoder
-#AWS_PROFILE=mchaaben serverless invoke local --function rss-reader
-#AWS_PROFILE=mchaaben serverless deploy -v
-#SLS_DEBUG=* AWS_PROFILE=mchaaben serverless invoke local --function audio-transcoder --path ../event.json -v
