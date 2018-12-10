@@ -71,7 +71,8 @@ The function code is available on the package rss-reader
     
     Create a role and a policy role. You have to create them in the ressources section on serverless.yml  
     Use this template for Role     
-    myCustRole0: &nbsp;
+    <pre>
+    myCustRole0:
       Type: AWS::IAM::Role &nbsp;
       Properties:
         RoleName: MyCustRole0
@@ -90,8 +91,9 @@ The function code is available on the package rss-reader
               Statement:
                 - Effect: Allow
                   Action:
-                  Resource: 
-      
+                  Resource:     
+    </pre>
+
 - Launch `serverless deploy` to deploy the created role
 - Check the IAM service on the AWS console: 
     
